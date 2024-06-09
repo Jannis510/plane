@@ -3,6 +3,7 @@ body {
     overflow: hidden;
     background: url('res/bg2.webp') no-repeat center center fixed;
     background-size: cover;
+    transform: scale(1); /* Standardmäßig kein Zoom */
 }
 
 #plane {
@@ -122,14 +123,18 @@ body {
 
 /* Medienabfragen für Mobilgeräte */
 @media (max-width: 600px) {
+    body {
+        transform: scale(0.8); /* Skaliert den gesamten Inhalt um 80% */
+        transform-origin: top left; /* Setzt den Ursprung der Skalierung in die obere linke Ecke */
+    }
     #plane {
-        width: 200px;
+        width: 300px; /* Kleinere Breite des Flugzeugs */
     }
     #gift {
-        width: 60px;
+        width: 100px; /* Kleinere Breite des Geschenks */
         top: 150px;
     }
     #bouquet {
-        width: 100px;
+        width: 150px; /* Kleinere Breite des Blumenstraußes */
     }
 }
