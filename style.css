@@ -119,3 +119,17 @@ body {
         opacity: 0;
     }
 }
+
+/* Medienabfragen für Mobilgeräte */
+@media (max-width: 600px) {
+    #plane {
+        width: 200px;
+    }
+    #gift {
+        width: 60px;
+        top: 150px;
+    }
+    #bouquet {
+        width: 100px;
+    }
+}
