@@ -1,7 +1,7 @@
 body {
     margin: 0;
     overflow: hidden;
-    background: url('res/bg.jpg') no-repeat center center fixed;
+    background: url('res/bg2.webp') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -19,24 +19,12 @@ body {
     position: absolute;
     top: 200px; /* Tiefer unter dem Flugzeug */
     left: -100px; /* Startpunkt außerhalb des sichtbaren Bereichs */
-    width: 100px;
+    width: 120px;
     height: auto;
     display: none;
     z-index: 3; /* Geschenk weiter vorne */
     transition: all 0.5s ease-in-out;
-}
-
-#bouquet {
-    display: none;
-    position: absolute;
-    top: 70vh; /* Gleiche Position wie das Geschenk nach dem Fallen */
-    left: 50%;
-    transform: translateX(-50%) scale(0.1); /* Startet klein */
-    width: 120px;
-    height: auto	;
-    z-index: 1; /* Blumenstrauß weiter hinten */
-    opacity: 0;
-    transition: all 1s ease-in-out;
+    animation: bounce 2s ease-in-out infinite alternate; /* Hüpf-Animation für das Geschenk */
 }
 
 .heart {
@@ -45,16 +33,89 @@ body {
     height: 20px;
     background: url('res/heart.png') no-repeat center center;
     background-size: cover;
-    opacity: 0;
-    animation: fly 4s forwards; /* Dauer der Animation auf 4 Sekunden */
+    opacity: 0.5;
+    animation: fly 6s forwards; /* Dauer der Animation auf 6 Sekunden verlängert */
+    z-index: 1; /* Herz-Effekte hinter dem Blumenstrauß */
 }
 
 @keyframes fly {
     0% {
-        opacity: 1;
+        opacity: 0.5;
+        transform: translate(0, 0) rotate(0deg);
+    }
+    70% {
+        opacity: 1; /* Verlängert auf 70% der Dauer */
     }
     100% {
         transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+#bouquet {
+    display: none;
+    position: absolute;
+    top: 70vh; /* Gleiche Position wie das Geschenk nach dem Fallen */
+    left: 50%;
+    transform: translateX(-50%) scale(0.1); /* Startet klein */
+    width: 200px; /* Größere Breite */
+    height: auto;
+    z-index: 3; /* Blumenstrauß weiter vorne */
+    opacity: 0;
+    transition: transform 2s ease-in-out, opacity 2s ease-in-out; /* Wachs- und Schwebe-Animation langsamer */
+    animation: grow 2s ease-in-out forwards, bounce 3s ease-in-out infinite alternate; /* Verstärkter Hüpf- und Schwebe-Effekt */
+}
+
+@keyframes grow {
+    from {
+        transform: translateX(-50%) scale(0.1);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20px); /* Verstärkter Hüpf-Effekt */
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateX(-50%) scale(1) translateY(0);
+    }
+    100% {
+        transform: translateX(-50%) scale(1) translateY(-10px);
+    }
+}
+
+.sparkle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: url('res/sparkle.jpg') no-repeat center center;
+    background-size: cover;
+    opacity: 0.5;
+    animation: sparkle 3s forwards; /* Dauer der Animation auf 3 Sekunden verlängert */
+    z-index: 1; /* Funken-Effekte hinter dem Blumenstrauß */
+}
+
+@keyframes sparkle {
+    0% {
+        opacity: 0.5;
+        transform: translate(0, 0) scale(1);
+    }
+    70% {
+        opacity: 1; /* Verlängert auf 70% der Dauer */
+    }
+    100% {
+        transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) scale(0.5);
         opacity: 0;
     }
 }
