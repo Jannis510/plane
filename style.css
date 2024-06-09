@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: url('res/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+#plane {
+    position: absolute;
+    top: 50px;
+    left: -100px;
+    width: 400px; /* Doppelte Breite des Flugzeugs */
+    height: auto; /* Höhe proportional zur Breite */
+    transition: transform 5s linear;
+    z-index: 2; /* Flugzeug weiter vorne */
+}
+
+#gift {
+    position: absolute;
+    top: 200px; /* Tiefer unter dem Flugzeug */
+    left: -100px; /* Startpunkt außerhalb des sichtbaren Bereichs */
+    width: 100px;
+    height: auto;
+    display: none;
+    z-index: 3; /* Geschenk weiter vorne */
+    transition: all 0.5s ease-in-out;
+}
+
+#bouquet {
+    display: none;
+    position: absolute;
+    top: 70vh; /* Gleiche Position wie das Geschenk nach dem Fallen */
+    left: 50%;
+    transform: translateX(-50%) scale(0.1); /* Startet klein */
+    width: 120px;
+    height: auto	;
+    z-index: 1; /* Blumenstrauß weiter hinten */
+    opacity: 0;
+    transition: all 1s ease-in-out;
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url('res/heart.png') no-repeat center center;
+    background-size: cover;
+    opacity: 0;
+    animation: fly 4s forwards; /* Dauer der Animation auf 4 Sekunden */
+}
+
+@keyframes fly {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) rotate(360deg);
+        opacity: 0;
+    }
+}
